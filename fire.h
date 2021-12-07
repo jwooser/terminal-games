@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef FIRE_H
+#define FIRE_H
 
 #include "entity.h"
 #include "health.h"
@@ -8,11 +8,7 @@
 #include "game.h"
 #include "point.h"
 
-class Player : public Entity, public Health {
-
-    static const std::vector<Point> bulletDirection;
-    size_t cooldown = 0;
-    void shoot(size_t dir);
+class Fire : public Entity, public Health {
 
     void initialize(Game &game) override;
     void process(Game &game) override;
@@ -20,6 +16,7 @@ class Player : public Entity, public Health {
     void collideY(Entity *other) override;
     void collideB(Border b) override;
     void passEntity(Entity *other) override;
+
 };
 
 #endif

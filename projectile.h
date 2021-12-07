@@ -5,7 +5,6 @@
 #include <vector>
 #include "border.h"
 #include "game.h"
-#include "point.h"
 
 class Projectile : public Entity {
 

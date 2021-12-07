@@ -26,6 +26,7 @@ void Player::shoot(size_t dir) {
     p->setVelocity(bulletDirection[dir] * 2);
 	cooldown = 1;
 }
+
 void Player::process(Game &game) {
     if (cooldown == 0) {
         if(game.getInput() == Action::ALT_UP) shoot(0);

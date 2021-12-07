@@ -16,8 +16,8 @@ void World::doInitialize(Game &game) {
 
 void World::doProcess(Game &game) {
     physics->step(entities);
-    process(game);
 	doEntityProcesses(game);
+    process(game);
     doEntityDestroys();
     doEntitySpawns(game);
     doEntityRenders();
