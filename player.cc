@@ -1,13 +1,14 @@
 #include "player.h"
 #include <memory>
 #include "projectile.h"
+#include "staticSprite.h"
 
-const vector<Point> bulletDirection = {
+const std::vector<Point> Player::bulletDirection = {
     Point{0,-1},
     Point{0,1},
     Point{-1,0},
     Point{1,0}
-}
+};
 
 void Player::initialize(Game &game) {
     addSprite(std::make_unique<StaticSprite>(Bitmap{'p'}));
@@ -19,18 +20,18 @@ void Player::initialize(Game &game) {
     setAction(Action::RIGHT, Point{1, 0});
 }
 
-void shoot(size_t dir) {
+void Player::shoot(size_t dir) {
     Projectile *p = queueSpawn(std::make_unique<Projectile>());
     p->setPosition(getPosition() + bulletDirection[dir]);
     p->setVelocity(bulletDirection[dir] * 2);
+	cooldown = 1;
 }
 void Player::process(Game &game) {
     if (cooldown == 0) {
-        cooldown = 1;
-        if(game.getInput() == Action::ALT_UP) direction = 0;
-        else if(game.getInput() == Action::ALT_DOWN) direction = 1;
-        else if(game.getInput() == Action::ALT_LEFT) direction = 2;
-        else if(game.getInput() == Action::ALT_RIGHT) direction = 3;
+        if(game.getInput() == Action::ALT_UP) shoot(0);
+        else if(game.getInput() == Action::ALT_DOWN) shoot(1);
+        else if(game.getInput() == Action::ALT_LEFT) shoot(2);
+        else if(game.getInput() == Action::ALT_RIGHT) shoot(3);
     } else --cooldown;
 }
 

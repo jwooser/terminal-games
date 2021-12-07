@@ -1,20 +1,21 @@
 #include "projectile.h"
+#include "staticSprite.h"
 
 void Projectile::initialize(Game &game) {
-    addSprite(std::make_unique<StaticSprite>(Bitmap{'p'}));
+    addSprite(std::make_unique<StaticSprite>(Bitmap{'o'}));
     setBounds(Point{1,1});
     setCollisionLayer(0b0000000000000010);
 }
 void Projectile::process(Game &game) { }
 void Projectile::collideX(Entity *other) {
-    queue_destroy();
+    queueDestroy();
 }
 void Projectile::collideY(Entity *other) {
-    queue_destroy();
+    queueDestroy();
 }
 void Projectile::collideB(Border b) {
-    queue_destroy();
+    queueDestroy();
 }
 void Projectile::passEntity(Entity *other) {
-    queue_destroy();
+    queueDestroy();
 }
