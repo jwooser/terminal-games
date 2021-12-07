@@ -15,8 +15,8 @@ namespace PhysicsHelpers {
         for (auto &b : entities) {
             if (a == b) continue;
             if (b->isOverlapping(*a) && !b->isCollidable(*a)) {
-                a->doPassEntity(*b);
-                b->doPassEntity(*a);
+                a->doPassEntity(b.get());
+                b->doPassEntity(a.get());
             }
         }
     }
@@ -26,8 +26,8 @@ namespace PhysicsHelpers {
             if (a == b) continue;
             if (b->isOverlapping(*a) && b->isCollidable(*a)) {
                 a->setX(x);
-                a->doCollideX(*b);
-                b->doCollideX(*a);
+                a->doCollideX(b.get());
+                b->doCollideX(a.get());
                 return true;
             }
         }
@@ -53,8 +53,8 @@ namespace PhysicsHelpers {
             if (a == b) continue;
             if (b->isOverlapping(*a) && b->isCollidable(*a)) {
                 a->setY(y);
-                a->doCollideY(*b);
-                b->doCollideY(*a);
+                a->doCollideY(b.get());
+                b->doCollideY(a.get());
                 return true;
             }
         }

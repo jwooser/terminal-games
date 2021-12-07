@@ -6,6 +6,10 @@ const map<string,Action> defaultMappings {
 	{"s", Action::DOWN}, 
 	{"d", Action::RIGHT},
 	{" ", Action::SPACE},
+	{"i", Action::ALT_UP}, 
+	{"j", Action::ALT_LEFT}, 
+	{"k", Action::ALT_DOWN}, 
+	{"l", Action::ALT_RIGHT},
 	{"q", Action::L_TRIGGER},
 	{"e", Action::R_TRIGGER}
 };

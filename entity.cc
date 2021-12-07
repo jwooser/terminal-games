@@ -25,11 +25,11 @@ void Entity::doProcess(Game &game) {
     if(ticksOutsideBorder >= 5) queueDestroy();
 }
 
-void Entity::doCollideX(Entity &other) {
+void Entity::doCollideX(Entity *other) {
     collideX(other);
 }
 
-void Entity::doCollideY(Entity &other) {
+void Entity::doCollideY(Entity *other) {
     collideY(other);
 }
 
@@ -37,7 +37,7 @@ void Entity::doCollideB(Border border) {
 	collideB(border);
 }
 
-void Entity::doPassEntity(Entity &other) {
+void Entity::doPassEntity(Entity *other) {
 	passEntity(other);
 }
 

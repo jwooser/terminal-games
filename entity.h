@@ -43,19 +43,19 @@ class Entity {
 
     virtual void initialize(Game &game) = 0;
 	virtual void process(Game &game) = 0;
-    virtual void collideX(Entity &other) = 0;
-    virtual void collideY(Entity &other) = 0;
+    virtual void collideX(Entity *other) = 0;
+    virtual void collideY(Entity *other) = 0;
     virtual void collideB(Border b) = 0;
-    virtual void passEntity(Entity &other) = 0;
+    virtual void passEntity(Entity *other) = 0;
   public:
 	virtual ~Entity() = default;
 
     void doInitialize(Game &game);
     void doProcess(Game &game);
-    void doCollideX(Entity &other);
-    void doCollideY(Entity &other);
+    void doCollideX(Entity *other);
+    void doCollideY(Entity *other);
 	void doCollideB(Border b);
-    void doPassEntity(Entity &other);
+    void doPassEntity(Entity *other);
 
     void queueDestroy();
     bool isTaggedDestroy() const;
