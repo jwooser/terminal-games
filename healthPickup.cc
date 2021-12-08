@@ -16,7 +16,9 @@ void HealthPickup::collideY(Entity *other) { }
 void HealthPickup::collideB(Border b) { }
 
 void HealthPickup::passEntity(Entity *other) {
-    if (auto p = dynamic_cast<Player*>(other)) p->heal();
-    queueDestroy();
+    if (auto p = dynamic_cast<Player*>(other)) {
+        p->heal();
+        queueDestroy();
+    }
 }
 
