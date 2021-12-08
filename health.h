@@ -7,11 +7,11 @@ class Health {
   public:
     void heal();
     void damage();
-    void heal(size_t h);
-    void damage(size_t d);
+    void heal(int h);
+    void damage(int d);
     int gethp() const;
     bool dead() const;
     virtual ~Health() = default;
-}
+};
 
 #endif

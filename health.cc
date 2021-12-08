@@ -4,10 +4,10 @@ void Health::heal() { ++hp; }
 
 void Health::damage() { --hp; }
 
-void Health::heal(size_t h) { hp += h; }
+void Health::heal(int h) { hp += h; }
 
-void Health::damage(size_t d) { hp -= d; }
+void Health::damage(int d) { hp -= d; }
 
-int Health::gethp() const ( return hp; )
+int Health::gethp() const { return hp; }
 
-bool Health::dead() const ( return hp == 0; )
+bool Health::dead() const { return hp <= 0; }

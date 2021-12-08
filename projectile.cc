@@ -1,9 +1,10 @@
 #include "projectile.h"
 #include "staticSprite.h"
+#include "health.h"
 #include "point.h"
 
 void Projectile::initialize(Game &game) {
-    addSprite(std::make_unique<AnimatedSprite>(Bitmap{'o'}));
+    addSprite(std::make_unique<StaticSprite>(Bitmap{'o'}));
     setBounds(Point{1,1});
     setCollisionLayer(0b0000000000000110);
 }
@@ -21,7 +22,6 @@ void Projectile::collideY(Entity *other) {
 }
 
 void Projectile::collideB(Border b) {
-    if (auto hp = dynamic_cast<Health*>(other)) hp->damage();
     queueDestroy();
 }
 

@@ -1,4 +1,5 @@
 #include "player.h"
+#include <string>
 #include <memory>
 #include "projectile.h"
 #include "staticSprite.h"
@@ -18,6 +19,8 @@ void Player::initialize(Game &game) {
     setAction(Action::DOWN, Point{0, 1});
     setAction(Action::LEFT, Point{-1, 0});
     setAction(Action::RIGHT, Point{1, 0});
+	heal(5);
+	game.updateStatus(2, "Health: " + std::to_string(gethp()));
 }
 
 void Player::shoot(size_t dir) {
@@ -34,6 +37,7 @@ void Player::process(Game &game) {
         else if(game.getInput() == Action::ALT_LEFT) shoot(2);
         else if(game.getInput() == Action::ALT_RIGHT) shoot(3);
     } else --cooldown;
+	game.updateStatus(2, "Health: " + std::to_string(gethp()));
 }
 
 void Player::collideX(Entity *other) { }

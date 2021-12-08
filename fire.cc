@@ -1,4 +1,5 @@
 #include "fire.h"
+#include "animatedSprite.h"
 
 void Fire::initialize(Game &game) {
     addSprite(std::make_unique<AnimatedSprite>(vector<Bitmap>{
@@ -7,8 +8,11 @@ void Fire::initialize(Game &game) {
     }));
     setBounds(Point{1,1});
     setCollisionLayer(0b0000000000000010);
+	heal(5);
 }
-void Fire::process(Game &game) { }
+void Fire::process(Game &game) {
+	if (dead()) queueDestroy();
+}
 
 void Fire::collideX(Entity *other) { }
 
