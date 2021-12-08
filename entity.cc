@@ -19,6 +19,7 @@ void Entity::doInitialize(Game &game) {
 
 void Entity::doProcess(Game &game) {
     input = game.getInput();
+    seen.clear();
     process(game);
     if(isOutsideBorder()) ++ticksOutsideBorder;
     else ticksOutsideBorder = 0;
@@ -38,7 +39,10 @@ void Entity::doCollideB(Border border) {
 }
 
 void Entity::doPassEntity(Entity *other) {
-	passEntity(other);
+    if (seen.count(other) == 0) {
+        passEntity(other);
+        seen.insert(other);
+    }
 }
 
 // ********************************************************************************

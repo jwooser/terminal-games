@@ -6,6 +6,7 @@
 #include <map>
 #include <vector>
 #include <queue>
+#include <set>
 #include "point.h"
 #include "bitmap.h"
 #include "sprite.h"
@@ -15,6 +16,7 @@
 using std::unique_ptr;
 using std::vector;
 using std::queue;
+using std::set;
 using std::map;
 
 class Game;
@@ -34,6 +36,7 @@ class Entity {
 
     Point bounds;
     int16_t collisionLayer;
+    set<Entity*> seen;
 
     Point velocity;
 	Action input = Action::INVALID;
