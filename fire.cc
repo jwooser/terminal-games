@@ -1,5 +1,8 @@
 #include "fire.h"
+#include <vector>
+#include <cstdlib>
 #include "animatedSprite.h"
+#include "healthPickup.h"
 
 void Fire::initialize(Game &game) {
     addSprite(std::make_unique<AnimatedSprite>(vector<Bitmap>{
@@ -11,7 +14,12 @@ void Fire::initialize(Game &game) {
 	heal(5);
 }
 void Fire::process(Game &game) {
-	if (dead()) queueDestroy();
+	if (dead()) {
+        if (rand()%5 == 0) {
+            queueSpawn(make_unique<HealthPickup>())->setPosition(getPosition());
+        }
+        queueDestroy();
+    }
 }
 
 void Fire::collideX(Entity *other) { }
