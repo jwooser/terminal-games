@@ -12,6 +12,8 @@ namespace PhysicsHelpers {
 
     int towards(int target, int pos);
 
+    void checkStationaryOverlaps(unique_ptr<Entity> &a, list<unique_ptr<Entity>> &entities);
+
     void checkOverlaps(unique_ptr<Entity> &a, list<unique_ptr<Entity>> &entities);
 
     bool checkEntityCollisionsX(unique_ptr<Entity> &a, list<unique_ptr<Entity>> &entities, int x);

@@ -32,10 +32,10 @@ namespace {
     
     void stepHeight(list<unique_ptr<Entity>> &entities) {
         for (auto &a : entities) {
+            checkStationaryOverlaps(a, entities);
             Point target = a->getPosition() + a->getVelocity();
             moveX(target.x, a, entities);
             moveY(target.y, a, entities);
-            checkOverlaps(a, entities);
         }
     }
 }

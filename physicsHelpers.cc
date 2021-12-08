@@ -11,6 +11,15 @@ namespace PhysicsHelpers {
 		return 0;
     }
 
+    void checkStationaryOverlaps(unique_ptr<Entity> &a, list<unique_ptr<Entity>> &entities) {
+        for (auto &b : entities) {
+            if (a == b) continue;
+            if (b->isOverlapping(*a) && !b->isCollidable(*a)) {
+                a->doPassEntity(b.get());
+            }
+        }
+    }
+
     void checkOverlaps(unique_ptr<Entity> &a, list<unique_ptr<Entity>> &entities) {
         for (auto &b : entities) {
             if (a == b) continue;
