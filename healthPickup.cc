@@ -3,7 +3,7 @@
 #include "player.h"
 
 void HealthPickup::initialize(Game &game) {
-    addSprite(std::make_unique<StaticSprite>(Bitmap{'h'});
+    addSprite(std::make_unique<StaticSprite>(Bitmap{'h'}));
     setBounds(Point{1,1});
     setCollisionLayer(0b0000000000000000);
 }

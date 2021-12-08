@@ -16,7 +16,7 @@ void Fire::initialize(Game &game) {
 void Fire::process(Game &game) {
 	if (dead()) {
         if (rand()%5 == 0) {
-            queueSpawn(make_unique<HealthPickup>())->setPosition(getPosition());
+            queueSpawn(std::make_unique<HealthPickup>())->setPosition(getPosition());
         }
         queueDestroy();
     }
