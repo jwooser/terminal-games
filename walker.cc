@@ -11,7 +11,7 @@ const std::vector<Point> Walker::walkDirection = {
 };
 
 void Walker::initialize(Game &game) {
-    addSprite(std::make_unique<StaticSprite>(Bitmap{2,2,'a'});
+    addSprite(std::make_unique<StaticSprite>(Bitmap{2,2,'a'}));
     setBounds(Point{2,2});
     setCollisionLayer(0b0000000000000100);
 	heal(3);
