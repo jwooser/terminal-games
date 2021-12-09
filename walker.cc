@@ -17,20 +17,20 @@ void Walker::initialize(Game &game) {
 	heal(3);
 }
 
-void Fire::process(Game &game) {
+void Walker::process(Game &game) {
 	if (dead()) queueDestroy();
     else if (game.getTick() % walkTime == 0) {
         setVelocity(walkDirection[rand() % 4]);
-        walkTime = rand() % 4 + 5
+        walkTime = rand() % 4 + 5;
     }
 }
 
-void Fire::collideX(Entity *other) { }
+void Walker::collideX(Entity *other) { }
 
-void Fire::collideY(Entity *other) { }
+void Walker::collideY(Entity *other) { }
 
-void Fire::collideB(Border b) { }
+void Walker::collideB(Border b) { }
 
-void Fire::passEntity(Entity *other) {
+void Walker::passEntity(Entity *other) {
     if (auto hp = dynamic_cast<Health*>(other)) hp->damage();
 }
