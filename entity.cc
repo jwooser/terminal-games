@@ -27,11 +27,17 @@ void Entity::doProcess(Game &game) {
 }
 
 void Entity::doCollideX(Entity *other) {
-    collideX(other);
+    if (seen.count(other) == 0) {
+        collideX(other);
+        seen.insert(other);
+    }
 }
 
 void Entity::doCollideY(Entity *other) {
-    collideY(other);
+    if (seen.count(other) == 0) {
+        collideY(other);
+        seen.insert(other);
+    }
 }
 
 void Entity::doCollideB(Border border) {
@@ -154,17 +160,21 @@ Point Entity::getSpriteOffset() const {
         return true;
     }
 
-    void Entity::setCollisionLayer(int16_t cl) {
+    void Entity::setCollisionLayer(unsigned int cl) {
         collisionLayer = cl;
     }
 
-    int16_t Entity::getCollisionLayer() const {
-        return collisionLayer;
+    void Entity::setCollisionMask(unsigned int cm) {
+        collisionMask = cm;
     }
 
     bool Entity::isCollidable(const Entity &other) const {
-        int16_t mask = collisionLayer & other.getCollisionLayer();
-        return mask != 0;
+        unsigned int mask;
+        mask = collisionMask & other.collisionLayer;
+        if (mask != 0) return true;
+        mask = other.collisionMask & collisionLayer;
+        if (mask != 0) return true;
+        return false;
     }
 
 // ********************************************************************************
