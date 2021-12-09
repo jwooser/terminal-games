@@ -2,11 +2,13 @@
 
 void Health::heal() { ++hp; }
 
-void Health::damage() { --hp; }
+void Health::damage() { if (!invuln) --hp; }
 
 void Health::heal(int h) { hp += h; }
 
-void Health::damage(int d) { hp -= d; }
+void Health::damage(int d) { if (!invuln) hp -= d; }
+
+void Health::toggleinvuln(bool i) { invuln = i; }
 
 int Health::gethp() const { return hp; }
 
