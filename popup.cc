@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include "staticSprite.h"
 #include "point.h"
+#include "player.h"
+#include "enemyProj.h"
 
 const std::vector<Point> Popup::bulletDirection = {
     Point{0,-1},
@@ -22,9 +24,9 @@ void Popup::shoot() {
     for (auto &d : bulletDirection) {
         EnemyProjectile *p = queueSpawn(std::make_unique<EnemyProjectile>());
         p->setPosition(getPosition() + d);
-        p->setVelocity(d * 2);
+        p->setVelocity(d);
     }
-	cooldown = 2;
+	cooldown = 8;
 }
 
 void Popup::process(Game &game) {
@@ -33,11 +35,11 @@ void Popup::process(Game &game) {
         if (cooldown == 0) shoot();
     }
     if (cooldown > 0) --cooldown;
-    if (getTick() % invulnTime == 0) {
+    if (game.getTick() % invulnTime == 0) {
         invulnState = !invulnState;
         toggleinvuln(invulnState);
-        nextform();
-        invulnTime = rand() % 4 + 4;
+        nextForm();
+        invulnTime = rand() % 4 + 16;
     }
 }
 

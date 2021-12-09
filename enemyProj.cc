@@ -2,6 +2,7 @@
 #include "staticSprite.h"
 #include "health.h"
 #include "point.h"
+#include "player.h"
 
 void EnemyProjectile::initialize(Game &game) {
     addSprite(std::make_unique<StaticSprite>(Bitmap{'*'}));

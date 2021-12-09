@@ -3,6 +3,7 @@
 #include "staticSprite.h"
 #include "point.h"
 #include "player.h"
+#include "walker.h"
 
 void Stalker::trackPlayer(Player *p) { player = p; }
 
@@ -27,7 +28,12 @@ void Stalker::initialize(Game &game) {
 }
 
 void Stalker::process(Game &game) {
-	if (dead()) queueDestroy();
+	if (dead()) {
+		if (rand() % 4 == 0) {
+			queueSpawn(std::make_unique<Walker>())->setPosition(getPosition());
+		}
+		queueDestroy();
+	}
     if (player) moveTowardsPlayer();
 	if (game.getTick() % 12 == 11) setVelocity(0, 0);
 }

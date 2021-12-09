@@ -11,10 +11,10 @@
 class Popup : public Entity, public Health {
 
     static const std::vector<Point> bulletDirection;
-    bool invulState = true;
-    size_t invulnTime = 6;
+    bool invulnState = true;
+    size_t invulnTime = 18;
     size_t cooldown = 0;
-    void shoot(size_t dir);
+    void shoot();
 
     void initialize(Game &game) override;
     void process(Game &game) override;
