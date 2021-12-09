@@ -1,7 +1,7 @@
 #include "customClock.h"
 
 CustomClock::CustomClock(float freq):
-time {clock()}
+time {clock()},
 freq {freq}
 { }
 

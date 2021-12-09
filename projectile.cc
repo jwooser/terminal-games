@@ -7,7 +7,6 @@ void Projectile::initialize(Game &game) {
     addSprite(std::make_unique<StaticSprite>(Bitmap{'o'}));
     setBounds(Point{1,1});
     setCollisionLayer(0b0000000000000010);
-    setCollisionMask(0b0000000000001100);
 }
 
 void Projectile::process(Game &game) { }
@@ -19,13 +18,9 @@ void Projectile::tryToHit(Entity *other) {
     }
 }
 
-void Projectile::collideX(Entity *other) {
-    tryToHit(other);
-}
+void Projectile::collideX(Entity *other) { }
 
-void Projectile::collideY(Entity *other) {
-    tryToHit(other);
-}
+void Projectile::collideY(Entity *other) { }
 
 void Projectile::collideB(Border b) {
     queueDestroy();

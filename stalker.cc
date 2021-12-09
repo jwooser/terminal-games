@@ -35,7 +35,7 @@ void Stalker::process(Game &game) {
 		queueDestroy();
 	}
     if (player) moveTowardsPlayer();
-	if (game.getTick() % 12 == 11) setVelocity(0, 0);
+	if (game.getTick() % 12 > 8) setVelocity(0, 0);
 }
 
 void Stalker::collideX(Entity *other) { }
