@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "staticSprite.h"
 #include "point.h"
+#include "player.h"
 
 const std::vector<Point> Walker::walkDirection = {
     Point{0,-1},
