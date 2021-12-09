@@ -1,7 +1,6 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include <cstdint>
 #include <memory>
 #include <map>
 #include <vector>
@@ -35,7 +34,8 @@ class Entity {
     size_t currForm = 0;
 
     Point bounds;
-    int16_t collisionLayer;
+    unsigned int collisionLayer;
+    unsigned int collisionMask;
     set<Entity*> seen;
 
     Point velocity;
@@ -90,8 +90,9 @@ class Entity {
     Point getBounds() const;
     bool isOverlapping(const Entity &other) const;
     bool isOverlapping(Point other_p, Point other_b) const;
-    void setCollisionLayer(int16_t cl);
-    int16_t getCollisionLayer() const;
+    
+    void setCollisionLayer(unsigned int cl);
+    void setCollisionMask(unsigned int cl);
     bool isCollidable(const Entity &other) const;
 
     void setVelocity(Point v);
