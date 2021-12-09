@@ -13,9 +13,10 @@ void Fire::initialize(Game &game) {
     setCollisionLayer(0b0000000000000010);
 	heal(5);
 }
+
 void Fire::process(Game &game) {
 	if (dead()) {
-        if (rand()%5 == 0) {
+        if (rand() % 5 == 0) {
             queueSpawn(std::make_unique<HealthPickup>())->setPosition(getPosition());
         }
         queueDestroy();
