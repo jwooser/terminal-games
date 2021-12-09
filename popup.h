@@ -1,16 +1,20 @@
-#ifndef STALKER_H
-#define STALKER_H
+#ifndef POPUP_H
+#define POPUP_H
 
 #include "entity.h"
+#include <vector>
 #include "health.h"
 #include "border.h"
 #include "game.h"
 #include "point.h"
-#include "player.h"
 
-class Stalker : public Entity, public Health {
-    Player *player = nullptr;
-    void moveTowardsPlayer();
+class Popup : public Entity, public Health {
+
+    static const std::vector<Point> bulletDirection;
+    bool invulState = true;
+    size_t invulnTime = 6;
+    size_t cooldown = 0;
+    void shoot(size_t dir);
 
     void initialize(Game &game) override;
     void process(Game &game) override;
@@ -19,8 +23,6 @@ class Stalker : public Entity, public Health {
     void collideB(Border b) override;
     void passEntity(Entity *other) override;
 
-  public:
-    void trackPlayer(Player *p);
 };
 
 #endif
