@@ -20,17 +20,23 @@ void Walker::initialize(Game &game) {
 void Walker::process(Game &game) {
 	if (dead()) queueDestroy();
     else if (game.getTick() % walkTime == 0) {
-        setVelocity(walkDirection[rand() % 4]);
-        walkTime = rand() % 4 + 5;
+        changeDirection();
     }
+}
+
+void Walker::changeDirection() {
+    setVelocity(walkDirection[rand() % 4]);
+    walkTime = rand() % 4 + 5;
 }
 
 void Walker::collideX(Entity *other) { }
 
 void Walker::collideY(Entity *other) { }
 
-void Walker::collideB(Border b) { }
+void Walker::collideB(Border b) {
+    changeDirection();
+}
 
 void Walker::passEntity(Entity *other) {
-    if (auto hp = dynamic_cast<Health*>(other)) hp->damage();
+    if (auto p = dynamic_cast<Player*>(other)) p->damage();
 }

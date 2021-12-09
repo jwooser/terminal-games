@@ -10,7 +10,8 @@
 
 class Walker : public Entity, public Health {
     static const std::vector<Point> walkDirection;
-    int walkTime = 5;
+    int walkTime = 7;
+    void changeDirection();
 
     void initialize(Game &game) override;
     void process(Game &game) override;
