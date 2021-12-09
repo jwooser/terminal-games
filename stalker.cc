@@ -4,13 +4,6 @@
 #include "point.h"
 #include "player.h"
 
-const std::vector<Point> Stalker::walkDirection = {
-    Point{0,-1},
-    Point{0,1},
-    Point{-1,0},
-    Point{1,0}
-};
-
 void Stalker::trackPlayer(Player *p) { player = p; }
 
 void Stalker::moveTowardsPlayer() {
@@ -18,11 +11,11 @@ void Stalker::moveTowardsPlayer() {
     int ax = abs(dist.x);
     int ay = abs(dist.y);
     if (ax > ay) {
-        if (dist.x > 0) setVelocity(0, -1);
-        else if (dist.x < 0) setVelocity(0, 1);
+        if (dist.x > 0) setVelocity(1, 0);
+        else if (dist.x < 0) setVelocity(-1, 0);
     } else {
-        if (dist.y > 0) setVelocity(-1, 0);
-        else if (dist.y < 0) setVelocity(1, 0); 
+        if (dist.y > 0) setVelocity(0, 1);
+        else if (dist.y < 0) setVelocity(0, -1); 
     }
 };
 
@@ -35,16 +28,15 @@ void Stalker::initialize(Game &game) {
 
 void Stalker::process(Game &game) {
 	if (dead()) queueDestroy();
-    moveTowardsPlayer();
+    if (player) moveTowardsPlayer();
+	if (game.getTick() % 12 == 11) setVelocity(0, 0);
 }
 
 void Stalker::collideX(Entity *other) { }
 
 void Stalker::collideY(Entity *other) { }
 
-void Stalker::collideB(Border b) {
-    changeDirection();
-}
+void Stalker::collideB(Border b) { }
 
 void Stalker::passEntity(Entity *other) {
     if (auto p = dynamic_cast<Player*>(other)) p->damage();

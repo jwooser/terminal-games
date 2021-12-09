@@ -10,7 +10,6 @@
 #include "player.h"
 
 class Stalker : public Entity, public Health {
-    static const std::vector<Point> walkDirection;
     Player *player = nullptr;
     void moveTowardsPlayer();
 
