@@ -11,14 +11,19 @@ void Projectile::initialize(Game &game) {
 
 void Projectile::process(Game &game) { }
 
+void Projectile::tryToHit(Entity *other) {
+    if (auto hp = dynamic_cast<Health*>(other)) {
+        hp->damage();
+        queueDestroy();
+    }
+}
+
 void Projectile::collideX(Entity *other) {
-    if (auto hp = dynamic_cast<Health*>(other)) hp->damage();
-    queueDestroy();
+    tryToHit(other);
 }
 
 void Projectile::collideY(Entity *other) {
-    if (auto hp = dynamic_cast<Health*>(other)) hp->damage();
-    queueDestroy();
+    tryToHit(other);
 }
 
 void Projectile::collideB(Border b) {
@@ -26,6 +31,5 @@ void Projectile::collideB(Border b) {
 }
 
 void Projectile::passEntity(Entity *other) {
-    if (auto hp = dynamic_cast<Health*>(other)) hp->damage();
-    queueDestroy();
+    tryToHit(other);
 }

@@ -8,6 +8,8 @@
 
 class Projectile : public Entity {
 
+    void tryToHit(Entity *other);
+
     void initialize(Game &game) override;
     void process(Game &game) override;
     void collideX(Entity *other);
