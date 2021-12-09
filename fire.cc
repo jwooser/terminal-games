@@ -10,7 +10,7 @@ void Fire::initialize(Game &game) {
         Bitmap{'X'}
     }));
     setBounds(Point{1,1});
-    setCollisionLayer(0b0000000000000010);
+    setCollisionLayer(0b0000000000001000);
 	heal(5);
 }
 
