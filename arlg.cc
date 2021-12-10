@@ -6,6 +6,7 @@
 #include "walker.h"
 #include "popup.h"
 #include "stalker.h"
+#include "snake.h"
 #include <string>
 
 void ARLG::initialize(Game &game) {
@@ -23,7 +24,7 @@ void ARLG::initialize(Game &game) {
 	s->setPosition(59, 8);
 	s->trackPlayer(p);
     queueSpawn(std::make_unique<Walker>(), 1)->setPosition(19, 18);
-    queueSpawn(std::make_unique<Walker>(), 1)->setPosition(59, 18);
+    queueSpawn(std::make_unique<Snake>(), 1)->setPosition(59, 18);
 }
 
 void ARLG::process(Game &game) {

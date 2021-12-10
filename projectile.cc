@@ -15,6 +15,8 @@ void Projectile::tryToHit(Entity *other) {
     if (auto hp = dynamic_cast<Health*>(other)) {
         hp->damage();
         queueDestroy();
+    } else if (auto snaket = dynamic_cast<Tail*>(other)) {
+        snaket->hit();
     }
 }
 
