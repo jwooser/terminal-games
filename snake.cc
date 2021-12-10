@@ -13,11 +13,12 @@ const std::vector<Point> Snake::slitherDirection = {
 };
 
 void Snake::makeTail() {
-    for (int i = -3; i < 0; ++i) {
-        Tail *t = queueSpawn(make_unique<Tail>());
+    for (int i = -2; i <= 0; ++i) {
+        Tail *t = queueSpawn(std::make_unique<Tail>());
         t->setPosition(getPosition() + i * getVelocity());
         t->setVelocity(getVelocity());
-        tail.push_back(t);
+		t->setHead(this);
+		tail.push_back(t);
     }
 }
 
@@ -28,6 +29,7 @@ void Snake::initialize(Game &game) {
 	heal(4);
     setVelocity(slitherDirection[rand() % 4]);
     toggleinvuln(true);
+	makeTail();
 }
 
 void Snake::process(Game &game) { 

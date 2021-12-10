@@ -8,6 +8,8 @@
 #include "game.h"
 #include "point.h"
 
+class Tail;
+
 class Snake : public Entity, public Health {
     static const std::vector<Point> slitherDirection;
     vector<Tail*> tail;
