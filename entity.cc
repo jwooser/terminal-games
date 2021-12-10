@@ -141,6 +141,7 @@ Point Entity::getSpriteOffset() const {
     }
 
     bool Entity::isOverlapping(const Entity &other) const {
+        if (destroy || other.destroy) return false;
         Point top1 = position;
         Point top2 = other.getPosition();
         Point bot1 = top1 + bounds;
@@ -169,6 +170,7 @@ Point Entity::getSpriteOffset() const {
     }
 
     bool Entity::isCollidable(const Entity &other) const {
+        if (destroy || other.destroy) return false;
         unsigned int mask;
         mask = collisionMask & other.collisionLayer;
         if (mask != 0) return true;
@@ -199,12 +201,7 @@ void Entity::reflectVelocityY() {
 }
 
 Point Entity::getVelocity() const {
-	auto a = actions.find(input);
-	Point control {0, 0};
-	if (a != actions.end()) {
-		control = a->second;
-	}
-    return velocity + control + gravity.at(gravitation);
+    return velocity;
 }
 
 void Entity::setAction(Action a, Point v) {
@@ -217,4 +214,13 @@ bool Entity::isPlayerControlled() const {
 
 void Entity::setGravitation(Border b) {
     gravitation = b;
+}
+
+Point Entity::getTotalVelocity() const {
+	auto a = actions.find(input);
+	Point control {0, 0};
+	if (a != actions.end()) {
+		control = a->second;
+	}
+    return velocity + control + gravity.at(gravitation);
 }
