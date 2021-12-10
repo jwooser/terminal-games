@@ -18,6 +18,7 @@ void Projectile::tryToHit(Entity *other) {
         queueDestroy();
     } else if (auto snaket = dynamic_cast<Tail*>(other)) {
         snaket->hit();
+		queueDestroy();
     }
 }
 
