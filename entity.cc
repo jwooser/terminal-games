@@ -220,7 +220,16 @@ void Entity::setGravitation(Border b) {
     gravitation = b;
 }
 
-Point Entity::getTotalVelocity() {
+Point Entity::getTotalVelocity() const {
+    auto a = actions.find(input);
+	Point control {0, 0};
+	if (a != actions.end()) {
+		control = a->second;
+	}
+    return velocity + control + gravity.at(gravitation) + pushVelocity;
+}
+
+Point Entity::processTotalVelocity() {
 	auto a = actions.find(input);
 	Point control {0, 0};
 	if (a != actions.end()) {

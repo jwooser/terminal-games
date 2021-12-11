@@ -110,7 +110,8 @@ class Entity {
 
     void setGravitation(Border b);
 
-    Point getTotalVelocity();
+    Point getTotalVelocity() const;
+    Point processTotalVelocity();
 
 };
 
