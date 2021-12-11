@@ -17,7 +17,8 @@ void ARLG::spawnWalker(int x, int y) {
 }
 
 void ARLG::spawnStalker(int x, int y) {
-    Entity* enemy = queueSpawn(std::make_unique<Walker>(), 1)->trackPlayer(p);
+    Stalker* enemy = queueSpawn(std::make_unique<Stalker>(), 1);
+	enemy->trackPlayer(p);
     enemy->setPosition(x, y);
     enemies.push_back(enemy);
 
@@ -42,7 +43,7 @@ void ARLG::loadLevel() {
     p->heal(playerhp);
     p->setPosition(39, 18);
     e = queueSpawn(std::make_unique<Exit>(), 1);
-    p->setPosition(12, 12);
+    e->setPosition(12, 12);
 
 }
 
@@ -56,13 +57,13 @@ void ARLG::process(Game &game) {
     auto it = enemies.begin();
     while (it != enemies.end()){
         if((*it)->isTaggedDestroy()){
-            it = enemies.erase(b);
-        } else ++b;
+            it = enemies.erase(it);
+        } else ++it;
     }
     if (enemies.empty()) {
         e->openExit();
     }
-    if (e->isExited) {
+    if (e->isExited()) {
         ++level;
         loadLevel();
     }
