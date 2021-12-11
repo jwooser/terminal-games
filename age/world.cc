@@ -34,6 +34,14 @@ void World::queueRender(Entity *entity) {
     render.emplace(pos, &sprite);
 }
 
+void World::queueDestroyAll() {
+    for (auto &a : entities) {
+        for (auto &b : a.second) {
+            b->queueDestroy();
+        }
+    }
+}
+
 queue<pair<Point, const Bitmap*>>& World::getRender() {
     return render;
 }

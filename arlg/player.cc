@@ -19,7 +19,6 @@ void Player::initialize(Game &game) {
     setAction(Action::DOWN, Point{0, 1});
     setAction(Action::LEFT, Point{-1, 0});
     setAction(Action::RIGHT, Point{1, 0});
-	heal(5);
 	game.updateStatus(2, "Health: " + std::to_string(gethp()));
 }
 

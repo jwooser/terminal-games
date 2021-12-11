@@ -42,6 +42,7 @@ class World {
 		return entity_ptr;
 	}
 	void toggleSolidBorder(bool solid);
+	void queueDestroyAll();
   public:
 	World();
 	void doInitialize(Game &game);
