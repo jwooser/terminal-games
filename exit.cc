@@ -1,4 +1,4 @@
-#include "healthPickup.h"
+#include "exit.h"
 #include "staticSprite.h"
 #include "player.h"
 
@@ -10,7 +10,7 @@ void Exit::initialize(Game &game) {
 }
 void Exit::process(Game &game) { }
 
-void Exitp::collideX(Entity *other) { }
+void Exit::collideX(Entity *other) { }
 
 void Exit::collideY(Entity *other) { }
 
@@ -23,10 +23,10 @@ void Exit::openExit() {
     }
 }
 
-void Exit::isExited() { return exited; }
+bool Exit::isExited() { return exited; }
 
 void Exit::passEntity(Entity *other) {
-    if ( open && auto p = dynamic_cast<Player*>(other)) {
+	if (open && dynamic_cast<Player*>(other)) {
         exited = true;
     }
 }

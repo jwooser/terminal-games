@@ -20,7 +20,7 @@ class Exit : public Entity {
 
   public:
     void openExit();
-    void isExited();
+    bool isExited();
 
 };
 

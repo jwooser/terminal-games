@@ -17,6 +17,7 @@ void Popup::initialize(Game &game) {
     addSprite(std::make_unique<StaticSprite>(Bitmap{'T'}));
     setBounds(Point{1,1});
     setCollisionLayer(0b0000000000000100);
+	setCollisionMask(0b0000000000000001);
 	heal(4);
 }
 
