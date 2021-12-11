@@ -1,24 +1,32 @@
 CXX = g++
-CXXFLAGS = -Wall -std=c++2a -MMD -g # std=c++2a <=> std=c++20
+CXXFLAGS = -Wall -std=c++14 -MMD -g
 
-SRC = ./age
-GAME1 = ./arlg
+EXEC = myexec
+LDLIBS = -lncurses
 
-SOURCES = $(shell find $(SRC) -name '*.cc')
-GAME1_SOURCES = $(shell find $(GAME1) -name '*.cc')
+AGE = age
+ARLG = arlg
+ROOT = .
+
+vpath %.cc $(AGE) $(ARLG)
+
+SOURCES := $(wildcard $(AGE)/*.cc $(ARLG)/*.cc)
+SOURCES := $(notdir $(SOURCES))
 OBJECTS = ${SOURCES:.cc=.o}
-GAME1_OBJECTS = ${GAME1_SOURCES:.cc=.o}
 DEPENDS = ${OBJECTS:.o=.d}
-GAME1_DEPENDS = ${GAME1_OBJECTS:.o=.d}
 
-all: game1
+all: ${OBJECTS} ${EXEC}
 
-game1: $(OBJECTS) $(GAME1_OBJECTS)
-    $(CXX) $(OBJECTS) $(GAME1_OBJECTS) -o arlg -lncurses
+${EXEC}: ${OBJECTS}
+	${CXX} ${OBJECTS} -o ${EXEC} ${LDLIBS}
 
--include ${DEPENDS} $(GAME1_DEPENDS)
+-include ${DEPENDS}
+
+$(ROOT)/%.o: %.cc
+	$(CXX) -c $(CXXFLAGS) -I ./age $< -o $@ ${LDLIBS} 
 
 .PHONY: clean
 
 clean:
-    rm ${OBJECTS} ${DEPENDS} ${GAME1_OBJECTS} ${GAME1_DEPENDS} game1
+	rm ${OBJECTS} ${DEPENDS} ${EXEC}
+
