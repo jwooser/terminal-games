@@ -24,6 +24,7 @@ void Stalker::initialize(Game &game) {
     addSprite(std::make_unique<StaticSprite>(Bitmap{2,2,'b'}));
     setBounds(Point{2,2});
     setCollisionLayer(0b0000000000000100);
+    setCollisionLayer(0b0000000000000001);
 	heal(2);
 }
 
@@ -38,13 +39,23 @@ void Stalker::process(Game &game) {
 	if (game.getTick() % 12 > 8) setVelocity(0, 0);
 }
 
-void Stalker::collideX(Entity *other) { }
+void Stalker::collideX(Entity *other) { 
+    if (auto p = dynamic_cast<Player*>(other)) {
+        p->damage;
+        push(-2 * getVelocity());
+        p->push(getVelocity());
+    }
+}
 
-void Stalker::collideY(Entity *other) { }
+void Stalker::collideY(Entity *other) { 
+    if (auto p = dynamic_cast<Player*>(other)) {
+        p->damage;
+        push(-2 * getVelocity());
+        p->push(getVelocity());
+    }
+}
 
 void Stalker::collideB(Border b) { }
 
-void Stalker::passEntity(Entity *other) {
-    if (auto p = dynamic_cast<Player*>(other)) p->damage();
-}
+void Stalker::passEntity(Entity *other) { }
 

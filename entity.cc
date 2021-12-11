@@ -204,6 +204,10 @@ Point Entity::getVelocity() const {
     return velocity;
 }
 
+void Entity::push(Point v) { pushVelocity = v; }
+
+void Entity::push(int vx, int vy) { pushVelocity = Point {vx, vy}; }
+
 void Entity::setAction(Action a, Point v) {
     actions[a] = v;
 }
@@ -222,5 +226,7 @@ Point Entity::getTotalVelocity() const {
 	if (a != actions.end()) {
 		control = a->second;
 	}
-    return velocity + control + gravity.at(gravitation);
+    Point push = pushVelocity;
+    pushVelocity = Point {0, 0};
+    return velocity + control + gravity.at(gravitation) + push;
 }

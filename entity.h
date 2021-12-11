@@ -39,6 +39,7 @@ class Entity {
     set<Entity*> seen;
 
     Point velocity;
+    Point pushVelocity;
 	Action input = Action::INVALID;
 	map<Action,Point> actions;
     Border gravitation = Border::NONE;
@@ -100,6 +101,9 @@ class Entity {
     void reflectVelocityY();
     void reflectVelocityX();
     Point getVelocity() const;
+
+    void push(Point v);
+    void push(int vx, int vy);
 
     void setAction(Action a, Point v);
     bool isPlayerControlled() const;
