@@ -52,11 +52,11 @@ queue<pair<Point, const Bitmap*>>& World::getRender() {
 // ENTITY HELPER METHODS
 // ********************************************************************************
 
-void doEntityPhysics() {
+void World::doEntityPhysics() {
     for (auto &a : entities) {
         std::vector<Body*> bodies;
         bodies.reserve(a.second.size());
-        for (auto &b = a.second) bodies.push_back(b.get());
+        for (auto &b : a.second) bodies.push_back(b.get());
         physics->step(bodies);
     }
 }
