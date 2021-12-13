@@ -11,17 +11,8 @@ namespace PhysicsHelpers {
 		return 0;
     }
 
-    void checkStationaryOverlaps(unique_ptr<Entity> &a, list<unique_ptr<Entity>> &entities) {
-        for (auto &b : entities) {
-            if (a == b) continue;
-            if (b->isOverlapping(*a) && !b->isCollidable(*a)) {
-                a->doPass(b.get());
-            }
-        }
-    }
-
-    void checkOverlaps(unique_ptr<Entity> &a, list<unique_ptr<Entity>> &entities) {
-        for (auto &b : entities) {
+    void checkOverlaps(Body* a, std::vector<Body*> bodies) {
+        for (auto &b : bodies) {
             if (a == b) continue;
             if (b->isOverlapping(*a) && !b->isCollidable(*a)) {
                 a->doPass(b.get());
@@ -30,8 +21,8 @@ namespace PhysicsHelpers {
         }
     }
 
-    bool checkEntityCollisionsX(unique_ptr<Entity> &a, list<unique_ptr<Entity>> &entities, int x) {
-        for (auto &b : entities) {
+    bool checkBodyCollisionsX(Body* a, std::vector<Body*> bodies, int x) {
+        for (auto &b : bodies) {
             if (a == b) continue;
             if (b->isOverlapping(*a) && b->isCollidable(*a)) {
                 a->setX(x);
@@ -43,7 +34,7 @@ namespace PhysicsHelpers {
         return false;
     }
 
-    bool checkBorderCollisionsX(unique_ptr<Entity> &a, int x) {
+    bool checkBorderCollisionsX(Body* a, int x) {
         if (a->isOverlapping(Point{0, 0}, Point{1, Properties::BORDER_HEIGHT})) {
             a->setX(x);
             a->doCollide(Border::LEFT);
@@ -57,8 +48,8 @@ namespace PhysicsHelpers {
         return false;
     }
 
-    bool checkEntityCollisionsY(unique_ptr<Entity> &a, list<unique_ptr<Entity>> &entities, int y) {
-        for (auto &b : entities) {
+    bool checkBodyCollisionsY(Body* a, std::vector<Body*> bodies, int y) {
+        for (auto &b : bodies) {
             if (a == b) continue;
             if (b->isOverlapping(*a) && b->isCollidable(*a)) {
                 a->setY(y);
@@ -70,7 +61,7 @@ namespace PhysicsHelpers {
         return false;
     }
 
-    bool checkBorderCollisionsY(unique_ptr<Entity> &a, int y) {
+    bool checkBorderCollisionsY(Body* a, int y) {
         if (a->isOverlapping(Point{0, 0}, Point{Properties::BORDER_WIDTH, 1})) {
             a->setY(y);
             a->doCollide(Border::TOP);

@@ -1,19 +1,13 @@
 #ifndef PHYSICS_H
 #define PHYSICS_H
 
-#include <map>
-#include <list>
-#include <memory>
-#include "entity.h"
-
-using std::map;
-using std::list;
-using std::unique_ptr;
+#include <vector>
+#include "body.h"
 
 class Physics {
   public:
     virtual ~Physics() = default;
-    virtual void step(map<int,list<unique_ptr<Entity>>> &entities) = 0;
+    virtual void step(std::vector<Body*> bodies) = 0;
 };
 
 #endif

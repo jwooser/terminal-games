@@ -12,6 +12,7 @@
 #include "physics.h"
 
 using std::map;
+using std::vector;
 using std::list;
 using std::queue;
 using std::unique_ptr;
@@ -30,6 +31,7 @@ class World {
 
 	void queueRender(Entity *entity);
 
+	void doEntityPhysics();
 	void doEntityProcesses(Game &game);
 	void doEntityDestroys();
 	void doEntitySpawns(Game &game);

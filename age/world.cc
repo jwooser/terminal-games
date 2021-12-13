@@ -1,6 +1,8 @@
 #include "world.h"
+#include <vector>
 #include "solidPhysics.h"
 #include "viewPhysics.h"
+#include "body.h"
 
 using std::make_unique;
 
@@ -15,7 +17,7 @@ void World::doInitialize(Game &game) {
 }
 
 void World::doProcess(Game &game) {
-    physics->step(entities);
+    doEntityPhysics();
 	doEntityProcesses(game);
     process(game);
     doEntityDestroys();
@@ -49,6 +51,15 @@ queue<pair<Point, const Bitmap*>>& World::getRender() {
 // ********************************************************************************
 // ENTITY HELPER METHODS
 // ********************************************************************************
+
+void doEntityPhysics() {
+    for (auto &a : entities) {
+        std::vector<Body*> bodies;
+        bodies.reserve(a.second.size());
+        for (auto &b = a.second) bodies.push_back(b.get());
+        physics->step(bodies);
+    }
+}
 
 void World::doEntityProcesses(Game &game) {
     for (auto &a : entities) {

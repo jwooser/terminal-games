@@ -1,10 +1,8 @@
 #ifndef PHYSICSHELPERS_H
 #define PHYSICSHELPERS_H
 
-#include <map>
-#include <list>
-#include <memory>
-#include "entity.h"
+#include <vector>
+#include "body.h"
 
 namespace PhysicsHelpers {
     using std::list;
@@ -12,17 +10,15 @@ namespace PhysicsHelpers {
 
     int towards(int target, int pos);
 
-    void checkStationaryOverlaps(unique_ptr<Entity> &a, list<unique_ptr<Entity>> &entities);
+    void checkOverlaps(Body* a, std::vector<Body*> bodies);
 
-    void checkOverlaps(unique_ptr<Entity> &a, list<unique_ptr<Entity>> &entities);
+    bool checkEntityCollisionsX(Body* a, std::vector<Body*> bodies, int x);
 
-    bool checkEntityCollisionsX(unique_ptr<Entity> &a, list<unique_ptr<Entity>> &entities, int x);
+    bool checkBorderCollisionsX(Body* a, int x);
 
-    bool checkBorderCollisionsX(unique_ptr<Entity> &a, int x);
+    bool checkEntityCollisionsY(Body* a, std::vector<Body*> bodies, int y);
 
-    bool checkEntityCollisionsY(unique_ptr<Entity> &a, list<unique_ptr<Entity>> &entities, int y);
-
-    bool checkBorderCollisionsY(unique_ptr<Entity> &a, int y);
+    bool checkBorderCollisionsY(Body* a, int y);
     
 }
 

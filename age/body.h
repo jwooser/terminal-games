@@ -29,7 +29,9 @@ class Body {
     virtual void collideY(Entity *other) = 0;
     virtual void collide(Border b) = 0;
     virtual void pass(Entity *other) = 0;
+
   public:
+
     void doCollideX(Body *other);
     void doCollideY(Body *other);
     void doCollide(Border b);
@@ -47,7 +49,7 @@ class Body {
     void setBounds(Point b);
     Point getBounds() const;
 
-	bool isOutsideBorder() const;
+	  bool isOutsideBorder() const;
 
     bool isOverlapping(const Body &other) const;
     bool isOverlapping(Point other_p, Point other_b) const;

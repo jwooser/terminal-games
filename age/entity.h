@@ -26,9 +26,11 @@ class Entity : public Body {
     size_t currForm = 0;
 
     virtual void initialize(Game &game) = 0;
-	virtual void process(Game &game) = 0;
+    virtual void process(Game &game) = 0;
+
   public:
-	virtual ~Entity() = default;
+
+    virtual ~Entity() = default;
 
     void doInitialize(Game &game);
     void doProcess(Game &game);
@@ -46,7 +48,7 @@ class Entity : public Body {
     size_t addSprite(unique_ptr<Sprite> sprite);
     const Bitmap& getSpriteFrame() const;
     void setSpriteOffset(size_t form, Point o);
-	Point getSpriteOffset() const;
+    Point getSpriteOffset() const;
 
 };
 
