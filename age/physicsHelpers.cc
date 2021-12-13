@@ -46,12 +46,12 @@ namespace PhysicsHelpers {
     bool checkBorderCollisionsX(unique_ptr<Entity> &a, int x) {
         if (a->isOverlapping(Point{0, 0}, Point{1, Properties::BORDER_HEIGHT})) {
             a->setX(x);
-            a->doCollideB(Border::LEFT);
+            a->doCollide(Border::LEFT);
             return true;
         }
         if (a->isOverlapping(Point{Properties::BORDER_WIDTH - 1, 0}, Point{1, Properties::BORDER_HEIGHT})) {
             a->setX(x);
-            a->doCollideB(Border::RIGHT);
+            a->doCollide(Border::RIGHT);
             return true;
         }
         return false;
@@ -73,12 +73,12 @@ namespace PhysicsHelpers {
     bool checkBorderCollisionsY(unique_ptr<Entity> &a, int y) {
         if (a->isOverlapping(Point{0, 0}, Point{Properties::BORDER_WIDTH, 1})) {
             a->setY(y);
-            a->doCollideB(Border::TOP);
+            a->doCollide(Border::TOP);
             return true;
         }
         if (a->isOverlapping(Point{0, Properties::BORDER_HEIGHT - 1}, Point{Properties::BORDER_WIDTH, 1})) {
             a->setY(y);
-            a->doCollideB(Border::BOTTOM);
+            a->doCollide(Border::BOTTOM);
             return true;
         }
         return false;

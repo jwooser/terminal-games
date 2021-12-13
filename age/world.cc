@@ -66,7 +66,7 @@ void World::doEntityDestroys() {
     for (auto &a : entities) {
         auto b = a.second.begin();
         while (b != a.second.end()){
-            if((*b)->isTaggedDestroy()){
+            if((*b)->isFlaggedDestroy()){
                 b = a.second.erase(b);
             } else ++b;
         }

@@ -26,7 +26,9 @@ void Body::doPass(Body *other) {
     }
 }
 
-void Entity::queueDestroy() { destroy = true; }
+void Body::queueDestroy() { destroy = true; }
+
+bool Body::isFlaggedDestroy() { return destroy; }
 
 // ********************************************************************************
 // POSITION METHODS
@@ -145,7 +147,7 @@ void Body::setGravitation(Border b) {
 
 Point Body::getTotalVelocity() const { return totalV; }
 
-Point Body::recalibrate() {
+Point Body::recalibrate(Action input) {
     seen.clear();
 	auto a = controls.find(input);
 	Point control {0, 0};

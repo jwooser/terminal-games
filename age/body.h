@@ -32,10 +32,11 @@ class Body {
   public:
     void doCollideX(Body *other);
     void doCollideY(Body *other);
-	void doCollide(Border b);
+    void doCollide(Border b);
     void doPass(Body *other);
 
     void queueDestroy();
+    bool isFlaggedDestroy() const;
 
     void setPosition(Point p);
     void setPosition(int x, int y);
