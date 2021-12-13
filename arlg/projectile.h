@@ -14,8 +14,8 @@ class Projectile : public Entity {
     void process(Game &game) override;
     void collideX(Entity *other);
     void collideY(Entity *other) override;
-    void collideB(Border b) override;
-    void passEntity(Entity *other) override;
+    void collide(Border b) override;
+    void Entity(Entity *other) override;
 
 };
 

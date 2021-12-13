@@ -48,9 +48,9 @@ void Popup::collideX(Entity *other) { }
 
 void Popup::collideY(Entity *other) { }
 
-void Popup::collideB(Border b) { }
+void Popup::collide(Border b) { }
 
-void Popup::passEntity(Entity *other) {
+void Popup::Entity(Entity *other) {
     if (auto p = dynamic_cast<Player*>(other)) p->damage();
 }
 

@@ -43,6 +43,6 @@ void Player::collideX(Entity *other) { }
 
 void Player::collideY(Entity *other) { }
 
-void Player::collideB(Border b) { }
+void Player::collide(Border b) { }
 
-void Player::passEntity(Entity *other) { }
+void Player::pass(Entity *other) { }

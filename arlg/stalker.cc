@@ -42,20 +42,20 @@ void Stalker::process(Game &game) {
 void Stalker::collideX(Entity *other) { 
     if (auto p = dynamic_cast<Player*>(other)) {
         p->damage();
-        push(-2 * getVelocity());
-        p->push(getVelocity());
+        doPush(-2 * getVelocity());
+        p->doPush(getVelocity());
     }
 }
 
 void Stalker::collideY(Entity *other) { 
     if (auto p = dynamic_cast<Player*>(other)) {
         p->damage();
-        push(-2 * getVelocity());
-        p->push(getVelocity());
+        doPush(-2 * getVelocity());
+        p->doPush(getVelocity());
     }
 }
 
-void Stalker::collideB(Border b) { }
+void Stalker::collide(Border b) { }
 
-void Stalker::passEntity(Entity *other) { }
+void Stalker::pass(Entity *other) { }
 

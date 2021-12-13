@@ -26,10 +26,10 @@ void Projectile::collideX(Entity *other) { }
 
 void Projectile::collideY(Entity *other) { }
 
-void Projectile::collideB(Border b) {
+void Projectile::collide(Border b) {
     queueDestroy();
 }
 
-void Projectile::passEntity(Entity *other) {
+void Projectile::pass(Entity *other) {
     tryToHit(other);
 }

@@ -27,8 +27,8 @@ void Fire::collideX(Entity *other) { }
 
 void Fire::collideY(Entity *other) { }
 
-void Fire::collideB(Border b) { }
+void Fire::collide(Border b) { }
 
-void Fire::passEntity(Entity *other) {
+void Fire::pass(Entity *other) {
     if (auto hp = dynamic_cast<Health*>(other)) hp->damage();
 }

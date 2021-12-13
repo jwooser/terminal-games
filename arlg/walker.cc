@@ -34,21 +34,21 @@ void Walker::changeDirection() {
 void Walker::collideX(Entity *other) {
 	if (auto p = dynamic_cast<Player*>(other)) {
         p->damage();
-        push(-2 * getVelocity());
-        p->push(getVelocity());
+        doPush(-2 * getVelocity());
+        p->doPush(getVelocity());
     }
 }
 
 void Walker::collideY(Entity *other) { 
 	if (auto p = dynamic_cast<Player*>(other)) {
         p->damage();
-        push(-2 * getVelocity());
-        p->push(getVelocity());
+        doPush(-2 * getVelocity());
+        p->doPush(getVelocity());
     }	
 }
 
-void Walker::collideB(Border b) {
+void Walker::collide(Border b) {
     changeDirection();
 }
 
-void Walker::passEntity(Entity *other) { }
+void Walker::pass(Entity *other) { }

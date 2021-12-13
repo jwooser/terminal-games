@@ -45,12 +45,12 @@ void Snake::collideX(Entity *other) { }
 
 void Snake::collideY(Entity *other) { }
 
-void Snake::collideB(Border b) { 
+void Snake::collide(Border b) { 
     if (b == Border::TOP || b == Border::BOTTOM) {
         reflectVelocityY();
     } else reflectVelocityX();
 }
 
-void Snake::passEntity(Entity *other) {
+void Snake::pass(Entity *other) {
     if (auto p = dynamic_cast<Player*>(other)) p->damage();
 }

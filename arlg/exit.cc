@@ -14,7 +14,7 @@ void Exit::collideX(Entity *other) { }
 
 void Exit::collideY(Entity *other) { }
 
-void Exit::collideB(Border b) { }
+void Exit::collide(Border b) { }
 
 void Exit::openExit() {
     if (!open) {
@@ -25,7 +25,7 @@ void Exit::openExit() {
 
 bool Exit::isExited() { return exited; }
 
-void Exit::passEntity(Entity *other) {
+void Exit::pass(Entity *other) {
 	if (open && dynamic_cast<Player*>(other)) {
         exited = true;
     }

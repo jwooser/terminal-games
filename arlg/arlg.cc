@@ -56,7 +56,7 @@ void ARLG::initialize(Game &game) {
 void ARLG::process(Game &game) {
     auto it = enemies.begin();
     while (it != enemies.end()){
-        if((*it)->isTaggedDestroy()){
+        if((*it)->isFlaggedDestroy()){
             it = enemies.erase(it);
         } else ++it;
     }

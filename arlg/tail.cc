@@ -24,12 +24,12 @@ void Tail::collideX(Entity *other) { }
 
 void Tail::collideY(Entity *other) { }
 
-void Tail::collideB(Border b) { 
+void Tail::collide(Border b) { 
     if (b == Border::TOP || b == Border::BOTTOM) {
         reflectVelocityY();
     } else reflectVelocityX();
 }
 
-void Tail::passEntity(Entity *other) {
+void Tail::pass(Entity *other) {
     if (auto p = dynamic_cast<Player*>(other)) p->damage();
 }
