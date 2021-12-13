@@ -1,20 +1,17 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include "body.h"
 #include <memory>
 #include <vector>
 #include <queue>
 #include "point.h"
 #include "bitmap.h"
 #include "sprite.h"
-#include "action.h"
-#include "border.h"
 
 using std::unique_ptr;
 using std::vector;
 using std::queue;
-using std::set;
-using std::map;
 
 class Game;
 

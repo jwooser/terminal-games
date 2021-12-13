@@ -17,12 +17,12 @@ class Body {
 
     unsigned int layer;
     unsigned int mask;
-    set<Body*> seen;
+    std::set<Body*> seen;
 
     Point velocity;
     Point gravity;
     Point push;
-    map<Action,Point> controls;
+    std::map<Action,Point> controls;
     Point totalv;
 
     virtual void collideX(Entity *other) = 0;
@@ -47,6 +47,8 @@ class Body {
     void setBounds(Point b);
     Point getBounds() const;
 
+	bool isOutsideBorder() const;
+
     bool isOverlapping(const Body &other) const;
     bool isOverlapping(Point other_p, Point other_b) const;
 
@@ -69,7 +71,7 @@ class Body {
     void setGravitation(Border b);
 
     Point getTotalVelocity() const;
-    void recalibrate();
+    void recalibrate(Action input);
 };
 
 #endif

@@ -1,16 +1,17 @@
 #include "body.h"
 #include "properties.h"
+#include "entity.h"
 
 void Body::doCollideX(Body *other) {
     if (seen.count(other) == 0) {
-        collideX(static_cast<Entity*>other);
+        collideX(static_cast<Entity*>(other));
         seen.insert(other);
     }
 }
 
 void Body::doCollideY(Body *other) {
     if (seen.count(other) == 0) {
-        collideY(static_cast<Entity*>other);
+        collideY(static_cast<Entity*>(other));
         seen.insert(other);
     }
 }
@@ -21,14 +22,14 @@ void Body::doCollide(Border border) {
 
 void Body::doPass(Body *other) {
     if (seen.count(other) == 0) {
-        passBody(static_cast<Entity*>other);
+        pass(static_cast<Entity*>(other));
         seen.insert(other);
     }
 }
 
 void Body::queueDestroy() { destroy = true; }
 
-bool Body::isFlaggedDestroy() { return destroy; }
+bool Body::isFlaggedDestroy() const { return destroy; }
 
 // ********************************************************************************
 // POSITION METHODS
@@ -98,12 +99,7 @@ void Body::setCollisionMask(unsigned int cm) { mask = cm; }
 
 bool Body::isCollidable(const Body &other) const {
     if (destroy || other.destroy) return false;
-    unsigned int mask;
-    mask = collisionMask & other.collisionLayer;
-    if (mask != 0) return true;
-    mask = other.collisionMask & collisionLayer;
-    if (mask != 0) return true;
-    return false;
+   	return (mask & other.layer) || (other.mask & layer);
 }
 
 // ********************************************************************************
@@ -145,15 +141,15 @@ void Body::setGravitation(Border b) {
     }
 }
 
-Point Body::getTotalVelocity() const { return totalV; }
+Point Body::getTotalVelocity() const { return totalv; }
 
-Point Body::recalibrate(Action input) {
+void Body::recalibrate(Action input) {
     seen.clear();
 	auto a = controls.find(input);
 	Point control {0, 0};
-	if (a != actions.end()) {
+	if (a != controls.end()) {
 		control = a->second;
 	}
-    totalV = velocity + control + gravity + push;
+    totalv = velocity + control + gravity + push;
     push = {0, 0};
 }
