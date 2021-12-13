@@ -16,7 +16,7 @@ class Exit : public Entity {
     void collideX(Entity *other);
     void collideY(Entity *other) override;
     void collide(Border b) override;
-    void Entity(Entity *other) override;
+    void pass(Entity *other) override;
 
   public:
     void openExit();
