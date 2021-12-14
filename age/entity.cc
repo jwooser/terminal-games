@@ -20,16 +20,6 @@ void Entity::doProcess(Game &game) {
 std::queue<unique_ptr<Entity>> &Entity::getSpawns() { return spawns; }
 
 // ********************************************************************************
-// TAGS
-// ********************************************************************************
-
-void Entity::addTag(string tag) { tags.insert(tag); }
-
-void Entity::removeTag(string tag) { tags.erase(tag); }
-
-bool Entity::hasTag(string tag) { return tags.count(tag); }
-
-// ********************************************************************************
 // SPRITE/GRAPHICS METHODS
 // ********************************************************************************
 

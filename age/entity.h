@@ -46,10 +46,6 @@ class Entity : public Body {
 	  }
     std::queue<unique_ptr<Entity>> &getSpawns();
 
-    void addTag(string tag);
-    void removeTag(string tag);
-    bool hasTag(string tag);
-
     void nextForm();
     void setForm(size_t form);
     size_t addSprite(unique_ptr<Sprite> sprite);
