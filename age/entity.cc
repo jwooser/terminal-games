@@ -17,7 +17,17 @@ void Entity::doProcess(Game &game) {
     if(ticksOutsideBorder >= 5) queueDestroy();
 }
 
-queue<unique_ptr<Entity>> &Entity::getSpawns() { return spawns; }
+std::queue<unique_ptr<Entity>> &Entity::getSpawns() { return spawns; }
+
+// ********************************************************************************
+// TAGS
+// ********************************************************************************
+
+void addTag(string tag) { tags.insert(tag); }
+
+void removeTag(string tag) { tags.erase(tag); }
+
+bool hasTag(string tag) { return tags.count(tag); }
 
 // ********************************************************************************
 // SPRITE/GRAPHICS METHODS
