@@ -23,11 +23,11 @@ std::queue<unique_ptr<Entity>> &Entity::getSpawns() { return spawns; }
 // TAGS
 // ********************************************************************************
 
-void addTag(string tag) { tags.insert(tag); }
+void Entity::addTag(string tag) { tags.insert(tag); }
 
-void removeTag(string tag) { tags.erase(tag); }
+void Entity::removeTag(string tag) { tags.erase(tag); }
 
-bool hasTag(string tag) { return tags.count(tag); }
+bool Entity::hasTag(string tag) { return tags.count(tag); }
 
 // ********************************************************************************
 // SPRITE/GRAPHICS METHODS

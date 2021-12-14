@@ -39,7 +39,7 @@ class World {
 	void doEntityRenders();
   protected:
 	template
-	<typename T, typename std::enable_if<is_base_of<Entity, T>::value, int>::type = 0>>
+	<typename T, typename std::enable_if<std::is_base_of<Entity, T>::value, int>::type = 0>
 	T *queueSpawn(unique_ptr<T> entity, int height) {
 		T *entity_ptr = entity.get();
 		spawns.emplace(std::move(entity), height);

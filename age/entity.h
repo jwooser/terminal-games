@@ -38,13 +38,13 @@ class Entity : public Body {
     void doProcess(Game &game);
 
     template 
-    <typename T, typename std::enable_if<is_base_of<Entity, T>::value, int>::type = 0>>
+    <typename T, typename std::enable_if<std::is_base_of<Entity, T>::value, int>::type = 0>
     T *queueSpawn(unique_ptr<T> entity) {
         T *entity_ptr = entity.get();
         spawns.push(std::move(entity));
         return entity_ptr;
 	  }
-    queue<unique_ptr<Entity>> &getSpawns();
+    std::queue<unique_ptr<Entity>> &getSpawns();
 
     void addTag(string tag);
     void removeTag(string tag);
