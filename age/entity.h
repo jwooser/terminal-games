@@ -24,7 +24,7 @@ class Entity : public Body {
     int height = 0;
 
     size_t ticksOutsideBorder = 0;
-    queue<pair<unique_ptr<Entity>, int>> spawns;
+    std::queue<pair<unique_ptr<Entity>, int>> spawns;
     std::set<string> tags;
 
     static const Bitmap noSprite;
@@ -44,12 +44,19 @@ class Entity : public Body {
     void setHeight(int h, EntityKey);
     template 
     <typename T, typename std::enable_if<std::is_base_of<Entity, T>::value, int>::type = 0>
-    T *queueSpawn(unique_ptr<T> entity, int height = height) {
+    T *queueSpawn(unique_ptr<T> entity, int h) {
         T *entity_ptr = entity.get();
-		    spawns.emplace(std::move(entity), height);
-		    return entity_ptr;
-	  }
-    std::queue<unique_ptr<Entity>> &getSpawns();
+		spawns.emplace(std::move(entity), h);
+		return entity_ptr;
+	}
+	template
+    <typename T, typename std::enable_if<std::is_base_of<Entity, T>::value, int>::type = 0>
+	T *queueSpawn(unique_ptr<T> entity) {
+        T *entity_ptr = entity.get();
+        spawns.emplace(std::move(entity), height);
+        return entity_ptr;
+    }
+    std::queue<pair<unique_ptr<Entity>, int>> &getSpawns();
 
     void nextForm();
     void setForm(size_t form);

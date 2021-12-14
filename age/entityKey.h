@@ -5,7 +5,7 @@ class World;
 
 class EntityKey {
     friend World;
-    HeightKey() {}
-}
+    EntityKey() {}
+};
 
 #endif

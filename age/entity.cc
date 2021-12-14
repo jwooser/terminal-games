@@ -19,7 +19,7 @@ void Entity::doProcess(Game &game) {
 
 void Entity::setHeight(int h, EntityKey) { height = h; }
 
-std::queue<unique_ptr<Entity>> &Entity::getSpawns() { return spawns; }
+std::queue<pair<unique_ptr<Entity>, int>> &Entity::getSpawns() { return spawns; }
 
 // ********************************************************************************
 // SPRITE/GRAPHICS METHODS
