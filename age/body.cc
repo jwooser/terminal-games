@@ -143,7 +143,7 @@ void Body::setGravitation(Border b) {
 
 Point Body::getTotalVelocity() const { return totalv; }
 
-void Body::recalibrate(Action input) {
+void Body::recalibrate(Action input, BodyKey) {
     seen.clear();
 	auto a = controls.find(input);
 	Point control {0, 0};
