@@ -2,6 +2,8 @@
 #include <utility>
 #include "game.h"
 #include "properties.h"
+#include "bodyKey.h"
+
 
 const Bitmap Entity::noSprite = Bitmap{};
 
@@ -11,7 +13,7 @@ void Entity::doInitialize(Game &game) {
 
 void Entity::doProcess(Game &game) {
     process(game);
-    recalibrate(game.getInput());
+    recalibrate(game.getInput(), {});
     if(isOutsideBorder()) ++ticksOutsideBorder;
     else ticksOutsideBorder = 0;
     if(ticksOutsideBorder >= 5) queueDestroy();

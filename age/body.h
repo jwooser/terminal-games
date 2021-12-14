@@ -6,6 +6,7 @@
 #include "point.h"
 #include "action.h"
 #include "border.h"
+#include "bodyKey.h"
 
 class Entity;
 
@@ -73,7 +74,7 @@ class Body {
     void setGravitation(Border b);
 
     Point getTotalVelocity() const;
-    void recalibrate(Action input);
+    void recalibrate(Action input, BodyKey);
 };
 
 #endif
