@@ -32,6 +32,7 @@ class World {
 
 	void queueRender(Entity *entity);
 
+	void collectSpawns(queue<pair<unique_ptr<Entity>, int>> &entitySpawns);
 	void doEntityPhysics();
 	void doEntityProcesses(Game &game);
 	void doEntityDestroys();
@@ -40,7 +41,7 @@ class World {
   protected:
 	template
 	<typename T, typename std::enable_if<std::is_base_of<Entity, T>::value, int>::type = 0>
-	T *queueSpawn(unique_ptr<T> entity, int height) {
+	T *queueSpawn(unique_ptr<T> entity, int height = 0) {
 		T *entity_ptr = entity.get();
 		spawns.emplace(std::move(entity), height);
 		return entity_ptr;

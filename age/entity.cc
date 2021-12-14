@@ -17,6 +17,8 @@ void Entity::doProcess(Game &game) {
     if(ticksOutsideBorder >= 5) queueDestroy();
 }
 
+void Entity::setHeight(int h, EntityKey) { height = h; }
+
 std::queue<unique_ptr<Entity>> &Entity::getSpawns() { return spawns; }
 
 // ********************************************************************************

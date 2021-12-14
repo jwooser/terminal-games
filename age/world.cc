@@ -3,6 +3,7 @@
 #include "solidPhysics.h"
 #include "viewPhysics.h"
 #include "body.h"
+#include "entityKey.h"
 
 using std::make_unique;
 
@@ -61,14 +62,18 @@ void World::doEntityPhysics() {
     }
 }
 
+void World::collectSpawns(queue<pair<unique_ptr<Entity>, int>> &entitySpawns) {
+    while (!entitySpawns.empty()) {
+        spawns.push(std::move(entitySpawns.front()));
+        entitySpawns.pop();
+    }
+}
+
 void World::doEntityProcesses(Game &game) {
     for (auto &a : entities) {
         for (auto &b : a.second) {
             b->doProcess(game);
-            while (!b->getSpawns().empty()) {
-                spawns.emplace(std::move(b->getSpawns().front()), a.first);
-                b->getSpawns().pop();
-            }
+            collectSpawns(b->getSpawns());
         }
     }
 }
@@ -90,6 +95,7 @@ void World::doEntitySpawns(Game &game) {
         Entity * e = entity.get();
         int height = spawns.front().second;
         entities[height].push_back(std::move(entity));
+        e->setHeight(height, {});
         e->doInitialize(game);
         spawns.pop();
     }
