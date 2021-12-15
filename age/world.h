@@ -11,6 +11,7 @@
 #include "bitmap.h"
 #include "point.h"
 #include "physics.h"
+#include "key.h"
 
 using std::map;
 using std::vector;
@@ -50,9 +51,9 @@ class World {
 	void queueDestroyAll();
   public:
 	World();
-	void doInitialize(Game &game);
-	void doProcess(Game &game);
-	queue<pair<Point, const Bitmap*>>& getRender();
+	void doInitialize(Game &game, Key<Game>);
+	void doProcess(Game &game, Key<Game>);
+	queue<pair<Point, const Bitmap*>>& getRender(Key<Game>);
 	virtual ~World() = default;
 };
 

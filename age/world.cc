@@ -10,19 +10,23 @@ World::World():
 physics {std::make_unique<SolidPhysics>()}
 { }
 
-void World::doInitialize(Game &game) {
+void World::doInitialize(Game &game, Key<Game>) {
     initialize(game);
 	doEntitySpawns(game);
     doEntityRenders();
 }
 
-void World::doProcess(Game &game) {
+void World::doProcess(Game &game, Key<Game>) {
     doEntityPhysics();
 	doEntityProcesses(game);
     process(game);
     doEntityDestroys();
     doEntitySpawns(game);
     doEntityRenders();
+}
+
+queue<pair<Point, const Bitmap*>>& World::getRender(Key<Game>) {
+    return render;
 }
 
 void World::toggleSolidBorder(bool solid) {
@@ -42,10 +46,6 @@ void World::queueDestroyAll() {
             b->queueDestroy();
         }
     }
-}
-
-queue<pair<Point, const Bitmap*>>& World::getRender() {
-    return render;
 }
 
 // ********************************************************************************

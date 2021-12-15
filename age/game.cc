@@ -70,8 +70,8 @@ void Game::gameLoop() {
     while (play) {
         if (clock->tick()) {
             input = getAction();
-            world->doProcess(*this);
-            updateGraphics(world->getRender());
+            world->doProcess(*this, {});
+            updateGraphics(world->getRender({}));
 			refreshView();
             ++tick;
         }
@@ -87,8 +87,8 @@ unsigned long int Game::getTick() const {
 void Game::go() {
     if (!play) {
         play = true;
-        world->doInitialize(*this);
-        updateGraphics(world->getRender());
+        world->doInitialize(*this, {});
+        updateGraphics(world->getRender({}));
         refreshView();
         gameLoop();
     }
