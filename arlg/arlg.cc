@@ -8,6 +8,7 @@
 #include "stalker.h"
 #include "snake.h"
 #include "point.h"
+#include "boss.h"
 #include <string>
 #include <vector>
 
@@ -24,7 +25,6 @@ void ARLG::spawnStalker(int x, int y) {
 	enemy->trackPlayer(p);
     enemy->setPosition(x, y);
     enemies.push_back(enemy);
-
 }
 
 void ARLG::spawnPopup(int x, int y) {
@@ -35,6 +35,12 @@ void ARLG::spawnPopup(int x, int y) {
 
 void ARLG::spawnSnake(int x, int y) {
     Entity* enemy = queueSpawn(std::make_unique<Snake>());
+    enemy->setPosition(x, y);
+    enemies.push_back(enemy);
+}
+
+void ARLG::spawnBoss(int x, int y) {
+    Entity* enemy = queueSpawn(std::make_unique<Boss>());
     enemy->setPosition(x, y);
     enemies.push_back(enemy);
 }
@@ -207,7 +213,8 @@ void ARLG::loadLevel5() {
 }
 
 void ARLG::loadLevel6() {
-    
+    p->setPosition(40, 18)
+    SpawnBoss(34, 4);
 }
 
 void ARLG::initialize(Game &game) {

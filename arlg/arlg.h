@@ -8,7 +8,7 @@
 #include "exit.h"
 
 class ARLG : public World {
-        size_t level = 4;
+        size_t level = 6;
         Player *p = nullptr;
         Exit *e = nullptr;
         int playerhp = 5;
