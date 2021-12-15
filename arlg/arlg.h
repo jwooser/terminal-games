@@ -19,12 +19,12 @@ class ARLG : public World {
         void spawnPopup(int x, int y);
         void spawnSnake(int x, int y);
         void loadLevel();
-        void level1();
-        void level2();
-        void level3();
-        void level4();
-        void level5();
-        void level6();
+        void loadLevel1();
+        void loadLevel2();
+        void loadLevel3();
+        void loadLevel4();
+        void loadLevel5();
+        void loadLevel6();
 
         void initialize(Game &game) override;
         void process(Game &game) override;
