@@ -2,6 +2,7 @@
 #include <memory>
 #include <cstdlib>
 #include <ctime>
+#include "action.h"
 #include "fire.h"
 #include "walker.h"
 #include "popup.h"
@@ -213,8 +214,8 @@ void ARLG::loadLevel5() {
 }
 
 void ARLG::loadLevel6() {
-    p->setPosition(40, 18)
-    SpawnBoss(34, 4);
+    p->setPosition(40, 18);
+    spawnBoss(34, 4);
 }
 
 void ARLG::initialize(Game &game) {
@@ -232,15 +233,22 @@ void ARLG::process(Game &game) {
             it = enemies.erase(it);
         } else ++it;
     }
-    if (enemies.empty()) {
-        e->openExit();
-    }
-    if (e->isExited()) {
-        if (level > 6) game.stop();
-		else {
-        	++level;
-			game.updateStatus(0, "Level: " + std::to_string(level) + "/6");
-        	loadLevel();
+	if (game.getInput() == Action::L_TRIGGER) game.stop();
+	if (e) {
+    	if (enemies.empty()) {
+        	e->openExit();
+    	}
+    	if (e->isExited()) {
+			++level;
+        	if (level > 6) {
+				p = nullptr;
+				e = nullptr;
+				queueDestroyAll();
+			}
+			else {
+				game.updateStatus(0, "Level: " + std::to_string(level) + "/6");
+        		loadLevel();
+			}
 		}
     }
 }

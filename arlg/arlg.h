@@ -19,6 +19,7 @@ class ARLG : public World {
         void spawnStalker(int x, int y);
         void spawnPopup(int x, int y);
         void spawnSnake(int x, int y);
+		void spawnBoss(int x, int y);
         void loadLevel();
         void loadLevel1();
         void loadLevel2();

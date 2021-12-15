@@ -9,6 +9,8 @@
 #include "point.h"
 
 class Boss : public Entity, public Health {
+	
+	bool rage = false;
 
     void initialize(Game &game) override;
     void process(Game &game) override;
