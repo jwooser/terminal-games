@@ -8,13 +8,12 @@
 #include "exit.h"
 
 class ARLG : public World {
-        size_t level = 6;
+        size_t level = 1;
         Player *p = nullptr;
         Exit *e = nullptr;
         int playerhp = 5;
         std::list<Entity*> enemies;
 
-		void setLevel(size_t l);
         void spawnWalker(int x, int y);
         void spawnStalker(int x, int y);
         void spawnPopup(int x, int y);
@@ -30,6 +29,10 @@ class ARLG : public World {
 
         void initialize(Game &game) override;
         void process(Game &game) override;
+
+	public:
+		void setLevel(size_t l);
+        void setLife(size_t l);
 };
 
 #endif

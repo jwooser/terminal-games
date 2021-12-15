@@ -16,6 +16,8 @@
 
 void ARLG::setLevel(size_t l) { level = l; }
 
+void ARLG::setLife(size_t l) { playerhp = l; }
+
 void ARLG::spawnWalker(int x, int y) {
     Entity* enemy = queueSpawn(std::make_unique<Walker>());
     enemy->setPosition(x, y);
@@ -216,7 +218,7 @@ void ARLG::loadLevel5() {
 
 void ARLG::loadLevel6() {
     p->setPosition(40, 18);
-    spawnBoss(34, 4);
+    spawnBoss(34, 2);
 }
 
 void ARLG::initialize(Game &game) {
@@ -236,11 +238,12 @@ void ARLG::process(Game &game) {
     }
 	if (game.getInput() == Action::L_TRIGGER) game.stop();
     if (p) {
-        if (p->gethp <= 0) {
+        if (p->gethp() <= 0) {
             p = nullptr;
 			e = nullptr;
 			queueDestroyAll();
-            queueSpawn(make_unique<Lose>());
+            queueSpawn(std::make_unique<Lose>());
+			game.updateStatus(2, "Press 'q' to quit");
         }
     }
 	if (e) {
@@ -253,7 +256,8 @@ void ARLG::process(Game &game) {
 				p = nullptr;
 				e = nullptr;
 				queueDestroyAll();
-                queueSpawn(make_unique<Win>());
+                queueSpawn(std::make_unique<Win>());
+				game.updateStatus(2, "Press 'q' to quit");
 			}
 			else {
 				game.updateStatus(0, "Level: " + std::to_string(level) + "/6");
