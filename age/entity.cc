@@ -9,6 +9,7 @@ const Bitmap Entity::noSprite = Bitmap{};
 
 void Entity::doInitialize(Game &game) {
     initialize(game);
+	recalibrate(game.getInput(), {});
 }
 
 void Entity::doProcess(Game &game) {

@@ -11,13 +11,21 @@ void Stalker::moveTowardsPlayer() {
     Point dist = player->getPosition() - getPosition();
     int ax = abs(dist.x);
     int ay = abs(dist.y);
-    if (ax > ay) {
-        if (dist.x > 0) setVelocity(1, 0);
-        else if (dist.x < 0) setVelocity(-1, 0);
-    } else {
+    if (ax != 0 && ay != 0) {
+		if (rand() % 2) {
+            if (dist.x > 0) setVelocity(1, 0);
+            else if (dist.x < 0) setVelocity(-1, 0);
+        } else {
+            if (dist.y > 0) setVelocity(0, 1);
+            else if (dist.y < 0) setVelocity(0, -1);
+        }
+	} else if (ay != 0) {
         if (dist.y > 0) setVelocity(0, 1);
         else if (dist.y < 0) setVelocity(0, -1); 
-    }
+    } else if (ax != 0 ){
+		if (dist.x > 0) setVelocity(1, 0);
+        else if (dist.x < 0) setVelocity(-1, 0);
+	}
 };
 
 void Stalker::initialize(Game &game) {
@@ -35,7 +43,7 @@ void Stalker::process(Game &game) {
 		}
 		queueDestroy();
 	}
-    if (player) moveTowardsPlayer();
+	if (player) moveTowardsPlayer();
 	if (game.getTick() % 12 > 10) setVelocity(0, 0);
 }
 

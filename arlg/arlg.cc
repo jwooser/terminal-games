@@ -9,9 +9,12 @@
 #include "snake.h"
 #include "point.h"
 #include <string>
+#include <vector>
+
+void ARLG::setLevel(size_t l) { level = l; }
 
 void ARLG::spawnWalker(int x, int y) {
-    Entity* enemy = queueSpawn(std::make_unique<Walker>();
+    Entity* enemy = queueSpawn(std::make_unique<Walker>());
     enemy->setPosition(x, y);
     enemies.push_back(enemy);
 }
@@ -40,24 +43,24 @@ void ARLG::loadLevel() {
     if (p) playerhp = p->gethp();
     queueDestroyAll();
     p = queueSpawn(std::make_unique<Player>());
-    std::list<Point> pos = {{39, 18}, {13, 8}, {57, 12}, {21, 4}, {29, 16}, {17, 16}, {71, 12}, {63, 4}}
+    std::vector<Point> pos = {{39, 19}, {13, 7}, {57, 13}, {21, 3}, {29, 17}, {17, 15}, {71, 11}, {63, 5}};
     p->heal(playerhp);
     size_t ppos = rand() % pos.size();
-    pos.erase(ppos);
+    pos.erase(pos.begin() + ppos);
     p->setPosition(pos[rand() % 8]);
     e = queueSpawn(std::make_unique<Exit>());
     size_t epos = rand() % pos.size();
     e->setPosition(pos[epos]);
     if (level == 1) loadLevel1();
-    else if (level == 2) level2();
-    else if (level == 3) level3();
-    else if (level == 4) level4();
-    else if (level == 5) level5();
-    else if (level == 6) level6();
+    else if (level == 2) loadLevel2();
+    else if (level == 3) loadLevel3();
+    else if (level == 4) loadLevel4();
+    else if (level == 5) loadLevel5();
+    else if (level == 6) loadLevel6();
 }
 
 void ARLG::loadLevel1() {
-    std::list<Point> pos;
+    std::vector<Point> pos;
     for (int x = 6; x < 74; x += 4) {
         for (int y = 4; y < 16; y += 4) {
             pos.push_back(Point{x, y});
@@ -65,32 +68,142 @@ void ARLG::loadLevel1() {
     }
     for (int i = 0; i < 6; ++i) {
         size_t temp = rand() % pos.size();
-        spos = pos[temp];
-        pos.erase(temp);
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
         spawnWalker(spos.x, spos.y);
     }
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < 6; ++i) {
         size_t temp = rand() % pos.size();
-        spos = pos[temp];
-        pos.erase(temp);
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
         queueSpawn(std::make_unique<Fire>())->setPosition(spos);
     }
 }
 
 void ARLG::loadLevel2() {
-    
+	std::vector<Point> pos;
+    for (int x = 6; x < 74; x += 4) {
+        for (int y = 4; y < 16; y += 4) {
+            pos.push_back(Point{x, y});
+        }
+    }
+    for (int i = 0; i < 4; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        spawnWalker(spos.x, spos.y);
+    }
+	for (int i = 0; i < 4; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        spawnStalker(spos.x, spos.y);
+    }
+
+    for (int i = 0; i < 6; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        queueSpawn(std::make_unique<Fire>())->setPosition(spos);
+    }    
 }
 
 void ARLG::loadLevel3() {
-    
+	std::vector<Point> pos;
+    for (int x = 6; x < 74; x += 4) {
+        for (int y = 4; y < 16; y += 4) {
+            pos.push_back(Point{x, y});
+        }
+    }
+    for (int i = 0; i < 6; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        spawnWalker(spos.x, spos.y);
+    }
+    for (int i = 0; i < 3; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        spawnPopup(spos.x, spos.y);
+    }
+
+    for (int i = 0; i < 6; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        queueSpawn(std::make_unique<Fire>())->setPosition(spos);
+	}
 }
 
 void ARLG::loadLevel4() {
+    std::vector<Point> pos;
+    for (int x = 6; x < 74; x += 4) {
+        for (int y = 4; y < 16; y += 4) {
+            pos.push_back(Point{x, y});
+        }
+    }
+    for (int i = 0; i < 6; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        spawnStalker(spos.x, spos.y);
+    }
+    for (int i = 0; i < 3; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        spawnSnake(spos.x, spos.y);
+    }
+
+    for (int i = 0; i < 4; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        queueSpawn(std::make_unique<Fire>())->setPosition(spos);
+    }
     
 }
 
 void ARLG::loadLevel5() {
-    
+	std::vector<Point> pos;
+    for (int x = 6; x < 74; x += 4) {
+        for (int y = 4; y < 16; y += 4) {
+            pos.push_back(Point{x, y});
+        }
+    }
+    for (int i = 0; i < 2; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        spawnStalker(spos.x, spos.y);
+    }
+    for (int i = 0; i < 2; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        spawnSnake(spos.x, spos.y);
+    }
+	for (int i = 0; i < 4; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        spawnWalker(spos.x, spos.y);
+    }
+	for (int i = 0; i < 2; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        spawnPopup(spos.x, spos.y);
+    }
+
+    for (int i = 0; i < 3; ++i) {
+        size_t temp = rand() % pos.size();
+        Point spos = pos[temp];
+        pos.erase(pos.begin() + temp);
+        queueSpawn(std::make_unique<Fire>())->setPosition(spos);
+    }
+ 
 }
 
 void ARLG::loadLevel6() {
@@ -101,6 +214,8 @@ void ARLG::initialize(Game &game) {
     srand(time(NULL));
     toggleSolidBorder(true);
     loadLevel();
+	game.updateStatus(0, "Level: " + std::to_string(level) + "/6");
+
 }
 
 void ARLG::process(Game &game) {
@@ -115,7 +230,10 @@ void ARLG::process(Game &game) {
     }
     if (e->isExited()) {
         if (level > 6) game.stop();
-        ++level;
-        loadLevel();
+		else {
+        	++level;
+			game.updateStatus(0, "Level: " + std::to_string(level) + "/6");
+        	loadLevel();
+		}
     }
 }

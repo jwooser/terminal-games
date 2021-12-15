@@ -8,12 +8,13 @@
 #include "exit.h"
 
 class ARLG : public World {
-        size_t level = 1;
+        size_t level = 4;
         Player *p = nullptr;
         Exit *e = nullptr;
         int playerhp = 5;
         std::list<Entity*> enemies;
 
+		void setLevel(size_t l);
         void spawnWalker(int x, int y);
         void spawnStalker(int x, int y);
         void spawnPopup(int x, int y);
