@@ -2,7 +2,7 @@
 #define ACTION_H
 
 enum class Action {
-    INVALID = 0,
+    INVALID,
     UP,
     RIGHT,
     DOWN,

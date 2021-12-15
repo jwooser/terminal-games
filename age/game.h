@@ -20,7 +20,7 @@ class World;
 class Game : public Model {
 	unique_ptr<World> world;
 	unique_ptr<Clock> clock;
-	Action input;
+	Action input = Action::INVALID;
 	unsigned long int tick = 0;
 	bool play = false;
 
