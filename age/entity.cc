@@ -7,7 +7,8 @@
 
 const Bitmap Entity::noSprite = Bitmap{};
 
-void Entity::doInitialize(Game &game) {
+void Entity::doInitialize(Game &game, int h) {
+    height = h;
     initialize(game);
 	recalibrate(game.getInput(), {});
 }
@@ -20,7 +21,7 @@ void Entity::doProcess(Game &game) {
     if(ticksOutsideBorder >= 5) queueDestroy();
 }
 
-void Entity::setHeight(int h, EntityKey) { height = h; }
+void Entity::setHeight(int h, Key<World>) { height = h; }
 
 std::queue<pair<unique_ptr<Entity>, int>> &Entity::getSpawns() { return spawns; }
 

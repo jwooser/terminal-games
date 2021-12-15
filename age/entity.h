@@ -12,13 +12,14 @@
 #include "point.h"
 #include "bitmap.h"
 #include "sprite.h"
-#include "entityKey.h"
+#include "key.h"
 
 using std::unique_ptr;
 using std::string;
 using std::pair;
 
 class Game;
+class World;
 
 class Entity : public Body {
     int height = 0;
@@ -38,10 +39,9 @@ class Entity : public Body {
 
     virtual ~Entity() = default;
 
-    void doInitialize(Game &game);
-    void doProcess(Game &game);
+    void doInitialize(Game &game, int h, Key<World>);
+    void doProcess(Game &game, Key<World>);
 
-    void setHeight(int h, EntityKey);
     template 
     <typename T, typename std::enable_if<std::is_base_of<Entity, T>::value, int>::type = 0>
     T *queueSpawn(unique_ptr<T> entity, int h) {
