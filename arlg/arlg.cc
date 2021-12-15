@@ -12,6 +12,7 @@
 #include "boss.h"
 #include <string>
 #include <vector>
+#include "message.h"
 
 void ARLG::setLevel(size_t l) { level = l; }
 
@@ -234,6 +235,14 @@ void ARLG::process(Game &game) {
         } else ++it;
     }
 	if (game.getInput() == Action::L_TRIGGER) game.stop();
+    if (p) {
+        if (p->gethp <= 0) {
+            p = nullptr;
+			e = nullptr;
+			queueDestroyAll();
+            queueSpawn(make_unique<Lose>());
+        }
+    }
 	if (e) {
     	if (enemies.empty()) {
         	e->openExit();
@@ -244,6 +253,7 @@ void ARLG::process(Game &game) {
 				p = nullptr;
 				e = nullptr;
 				queueDestroyAll();
+                queueSpawn(make_unique<Win>());
 			}
 			else {
 				game.updateStatus(0, "Level: " + std::to_string(level) + "/6");
