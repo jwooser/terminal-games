@@ -1,11 +1,11 @@
-#ifndef ENTITYKEY_H
-#define ENTITYKEY_H
+#ifndef KEY_H
+#define KEY_H
 
-class World;
-
-class EntityKey {
-    friend World;
-    EntityKey() {}
+template <typename T>
+class Key {
+    friend T;
+    Key() { }
+	Key(Key const&) { }
 };
 
 #endif

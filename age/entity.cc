@@ -2,26 +2,22 @@
 #include <utility>
 #include "game.h"
 #include "properties.h"
-#include "bodyKey.h"
-
 
 const Bitmap Entity::noSprite = Bitmap{};
 
-void Entity::doInitialize(Game &game, int h) {
+void Entity::doInitialize(Game &game, int h, Key<World>) {
     height = h;
     initialize(game);
 	recalibrate(game.getInput(), {});
 }
 
-void Entity::doProcess(Game &game) {
+void Entity::doProcess(Game &game, Key<World>) {
     process(game);
     recalibrate(game.getInput(), {});
     if(isOutsideBorder()) ++ticksOutsideBorder;
     else ticksOutsideBorder = 0;
     if(ticksOutsideBorder >= 5) queueDestroy();
 }
-
-void Entity::setHeight(int h, Key<World>) { height = h; }
 
 std::queue<pair<unique_ptr<Entity>, int>> &Entity::getSpawns() { return spawns; }
 
