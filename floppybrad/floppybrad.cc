@@ -7,14 +7,14 @@
 #include <string>
 #include <vector>
 
-void ARLG::initialize(Game &game) {
+void FloppyBrad::initialize(Game &game) {
     srand(time(NULL));
     toggleSolidBorder(false);
     brad = queueSpawn(std::make_unique<Brad>());
     brad->setPosition(15, 10);
 }
 
-void ARLG::process(Game &game) {
+void FloppyBrad::process(Game &game) {
     
 }
 
