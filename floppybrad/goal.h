@@ -1,12 +1,12 @@
-#ifndef PIPE_H
-#define PIPE_H
+#ifndef GOAL_H
+#define GOAL_H
 
 #include "entity.h"
 #include "border.h"
 #include "game.h"
 #include "point.h"
 
-class Pipe : public Entity {
+class Goal : public Entity {
 
     void initialize(Game &game) override;
     void process(Game &game) override;
@@ -15,9 +15,6 @@ class Pipe : public Entity {
     void collide(Border b) override;
     void pass(Entity *other) override;
 
-  public:
-    void setSize(int h, bool top);
 };
 
 #endif
-
