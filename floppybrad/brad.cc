@@ -20,11 +20,19 @@ void Brad::initialize(Game &game) {
 
 void Brad::process(Game &game) { }
 
-void Brad::collideX(Entity *other) { }
+void Brad::collideX(Entity *other) { queueDestroy(); }
 
-void Brad::collideY(Entity *other) { }
+void Brad::collideY(Entity *other) { queueDestroy(); }
 
-void Brad::collide(Border b) { }
+void Brad::collide(Border b) {
+	if (b == Border::BOTTOM) {
+		queueDestroy();
+	}
+}
 
-void Brad::pass(Entity *other) { }
+void Brad::pass(Entity *other) {
+	++score;
+	other->queueDestroy();
+}
 
+size_t Brad::getScore() { return score; }

@@ -7,14 +7,14 @@
 #include "game.h"
 #include "point.h"
 
-class Brad : public Entity {
+class Pipe : public Entity {
 
     void initialize(Game &game) override;
     void process(Game &game) override;
     void collideX(Entity *other);
     void collideY(Entity *other) override;
     void collide(Border b) override;
-    void pass(Entity *other) override;0
+    void pass(Entity *other) override;
 
   public:
     void setSize(int h, bool top);

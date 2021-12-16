@@ -8,6 +8,8 @@
 #include "point.h"
 
 class Brad : public Entity {
+	
+	size_t score = 0;
 
     void initialize(Game &game) override;
     void process(Game &game) override;
@@ -15,6 +17,9 @@ class Brad : public Entity {
     void collideY(Entity *other) override;
     void collide(Border b) override;
     void pass(Entity *other) override;
+
+  public:
+	size_t getScore();
 };
 
 #endif

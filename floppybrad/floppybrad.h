@@ -8,6 +8,7 @@
 
 class FloppyBrad : public World {
     Brad *brad;
+	size_t high = 0;
 
     void initialize(Game &game) override;
     void process(Game &game) override;
