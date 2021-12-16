@@ -43,14 +43,15 @@ size_t Entity::addSprite(unique_ptr<Sprite> sprite) {
 }
 
 const Bitmap &Entity::getSpriteFrame() const {
-    if (forms.size() == 0) return noSprite;
+    if (forms.empty()) return noSprite;
     return forms[currForm]->getFrame();
 }
 
 void Entity::setSpriteOffset(size_t form, Point o) {
-    forms[form]->setOffset(o);
+    if (form < forms.size()) forms[form]->setOffset(o);
 }
 
 Point Entity::getSpriteOffset() const {
+    if (forms.empty()) return Point{0, 0};
 	return forms[currForm]->getOffset();
 }
