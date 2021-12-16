@@ -3,7 +3,6 @@
 #include <memory>
 #include "animatedSprite.h"
 
-
 void Brad::initialize(Game &game) {
     addSprite(std::make_unique<AnimatedSprite>(vector<Bitmap>{
         Bitmap{vector<Pixel>{
