@@ -9,7 +9,7 @@
 
 void FloppyBrad::initialize(Game &game) {
     srand(time(NULL));
-    toggleSolidBorder(false);
+    toggleSolidBorder(true);
     brad = queueSpawn(std::make_unique<Brad>());
     brad->setPosition(15, 10);
 }
