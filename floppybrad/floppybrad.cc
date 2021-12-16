@@ -28,7 +28,7 @@ void FloppyBrad::process(Game &game) {
     if (game.getTick() % 30 == 0) {
         int t = 2 + rand() % 14;
         queueSpawn(std::make_unique<Pipe>())->setSize(t, true);
-		queueSpawn(std::make_unique<Goal>())->setPosition(81, t + 1)
+		queueSpawn(std::make_unique<Goal>())->setPosition(81, t + 1);
         queueSpawn(std::make_unique<Pipe>())->setSize(Properties::BORDER_HEIGHT - t - 6, false);
     }
 	if (brad->isFlaggedDestroy()) {

@@ -2,7 +2,7 @@
 #include <memory>
 
 void Goal::initialize(Game &game) {
-    setBounds(1, 6)
+    setBounds(Point{1, 6});
     setVelocity(-2, 0);
 }
 
